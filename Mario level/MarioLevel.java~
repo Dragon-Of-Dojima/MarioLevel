@@ -1,23 +1,114 @@
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JComponent;
+import java.awt.BorderLayout;
+import javax.swing.JLayeredPane;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import javax.imageio.ImageIO;
+import java.net.URL;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.awt.Color;
 
-public class MarioLevel implements KeyListener{
-  Mario m = new Mario();
-  MarioComponent mc = new MarioComponent();
+//a6e5ff is color of "sky"
+//window size: 868,915
+
+public class MarioLevel extends JFrame {
+
+  MarioRender m = new MarioRender();
+  GroundTileRender gT = new GroundTileRender();
+  JLabel bg;
   
-  public void keyPressed(KeyEvent k){
+  public MarioLevel(){
+   bg = new JLabel();
+    this.setSize(868, 915);
+    this.setVisible(true);
+    this.add(bg, BorderLayout.CENTER);
+    bg.setLayout(null);
     
-    if((k.getKeyCode() == 37)){
-      m.move();
-    }
-    if(k.getKeyCode() == 65){
-      m.jump();
-    }
+    bg.add(m);
+    m.setBounds(m.marioSprite.getX(), m.marioSprite.getY(), m.marioSprite.sprite.getWidth(), m.marioSprite.sprite.getHeight());
+    bg.add(gT);
+    gT.setBounds(gT.gTile.getX(), gT.gTile.getY(), gT.gTile.sprite.getWidth(),gT.gTile.sprite.getHeight());
+    
+    this.getContentPane().setBackground(Constants.MAINLEVELCOLOR);
+
+//    gT.setBounds(gT.gTile.getX(), gT.gTile.getY(), gT.gTile.sprite.getWidth(),gT.gTile.sprite.getHeight());
+//    this.add(m);
+//    m.setBounds(m.marioSprite.getX(), m.marioSprite.getY(), m.marioSprite.sprite.getWidth(), m.marioSprite.sprite.getHeight());
+    
+    
+    
+    
+    KeyListener kl = new MoveListener();
+    this.addKeyListener(kl);
+  
+    this.setFocusable(true);
+
+    
+    //this.setFocusable(true);
+   
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
   }
   
-  public void keyTyped(KeyEvent k){}
-  public void keyReleased(KeyEvent k){} 
+  class MoveListener implements KeyListener{
+    public void keyPressed(KeyEvent k){
+      
+      if((k.getKeyCode() == 39)){
+        m.moveMarioRight();
+        System.out.println(m.marioSprite.getCoordinates());
+      }
+      if((k.getKeyCode() == 37)){
+        m.moveMarioLeft();
+        System.out.println(m.marioSprite.getCoordinates());
+        
+        URL spriteAtLoc = getClass().getResource("sprites/Mario/SmallStandFaceLeft.bmp");
+
+    try{
+      m.marioSprite.sprite = ImageIO.read(spriteAtLoc);
+
+    } catch(IOException e){
+      System.out.println("sprite not found");
+      e.printStackTrace();
+    }
+        
+        System.out.println(m.marioSprite.getCoordinates());
+      }
+      
+      if(k.getKeyCode() == 83){
+        URL spriteAtLoc = getClass().getResource("sprites/Mario/SmallJumpFaceRight.bmp");
+        
+        try{
+          m.marioSprite.sprite = ImageIO.read(spriteAtLoc);
+          
+        } catch(IOException e){
+          System.out.println("sprite not found");
+          e.printStackTrace();
+        }
+        
+        m.jumpMario();
+        System.out.println(m.marioSprite.getCoordinates());
+      }
+      
+    }
+    public void keyReleased(KeyEvent k){
+//      if(k.getKeyCode = 83){
+//        mc.Mario
+//      }
+    }
+    public void keyTyped(KeyEvent k){}    
+  }
+  
+
+  
+  public static void main(String[] args){
+   MarioLevel m = new MarioLevel();
+  }
 
 
 }

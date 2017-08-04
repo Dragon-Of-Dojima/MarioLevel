@@ -1,0 +1,6 @@
+import java.awt.Color;
+
+public class Constants{
+  public static final Color MAINLEVELCOLOR = new Color(156, 252, 240);
+  public static final int FLOORTILESIZE = 32;
+}

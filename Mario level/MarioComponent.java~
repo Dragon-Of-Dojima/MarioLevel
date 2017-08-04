@@ -21,28 +21,43 @@ import java.net.URL;
 import java.awt.image.*;
 
 
-public class MarioComponent extends JComponent{
-
-  private Mario m;
+public class MarioComponent extends JLabel{
+  
+  protected Mario marioSprite;
   
   
   public MarioComponent(){
-    m = new Mario();
+    marioSprite = new Mario();
   }
   
   public void paintComponent(Graphics g){
     //super.paintComponent(g);
-    m.draw(g);
+    marioSprite.draw(g);
   }
   
-    public void moveMario(){
-    m.move();
+  public void moveMarioRight(){
+    marioSprite.moveRight();
     repaint();
+  }
+  public void moveMarioLeft(){
+    marioSprite.moveLeft();
+    repaint();
+  }
+  
+  
+  public void jumpMario(){
+    marioSprite.jump();
+    repaint();
+    
+  }
+  
+  public void getCoordinates(){
+    System.out.println(marioSprite.getCoordinates());
   }
   
   @Override
   public Dimension getPreferredSize() {
-    return new Dimension(m.sprite.getWidth(), m.sprite.getHeight());
+    return new Dimension(marioSprite.sprite.getWidth(), marioSprite.sprite.getHeight());
   }
   
   public static void main(String[] args){

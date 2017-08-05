@@ -25,7 +25,7 @@ public class GroundTile extends Tile{
   }
   
   public GroundTile(){
-    this.whichOne = 2;
+    this.whichOne = 1;
     this.sprite = chooseSprite();
     this.x = 0;
     this.y = 839;
@@ -36,7 +36,7 @@ public class GroundTile extends Tile{
     String spritePath = null;
     
     switch(this.whichOne){
-      case 1: spritePath = "sprites/Mario/leftEdgeTileReg.bmp";
+      case 1: spritePath = "sprites/tiles/leftEdgeTileReg.bmp";
       break;
       case 2: spritePath = "sprites/tiles/nonEdgeTileReg.bmp";
       break;
@@ -86,7 +86,7 @@ public class GroundTile extends Tile{
   
   public void draw(Graphics g){
     Graphics2D g2 = (Graphics2D) g;
-    g2.drawImage(sprite, this.x, this.y, null);
+    g2.drawImage(sprite, 0, 0, null); //DO NOT SET x and y TO ANYTHING, this sets 0,0 to top left!!
   }
   
   public static void main(String[] args){

@@ -19,59 +19,70 @@ public class Mario{
   protected Direction dir;
   protected int x, y;
   protected BufferedImage sprite;
+  protected boolean isInAir;
   
   
   public Mario(){
     this.state = MarioState.SMALL;
     this.x = 54;
-    this.y = 806;
+    this.y = 810;
     dir = Direction.RIGHT;
-    URL spriteAtLoc = Utils.urlGenerator(Constants.SMALLSTANDFACERIGHT);
-    this.sprite = Utils.generateAndFilter(sprite,spriteAtLoc);
+    setSprite(Constants.SMALLSTANDFACERIGHT);
+    isInAir = false;
   }
   
   public Mario(MarioState s, int x, int y){
     this.state = s;
     this.x = x;
     this.y = y;
-    
-    URL spriteAtLoc = getClass().getResource("sprites/Mario/SmallStandFaceRight.bmp");
-
-    try{
-      sprite = ImageIO.read(spriteAtLoc);
-
-    } catch(IOException e){
-      System.out.println("sprite not found");
-      e.printStackTrace();
-    }
+    dir = Direction.RIGHT;
+    URL spriteAtLoc = Utils.urlGenerator(Constants.SMALLSTANDFACERIGHT);
+    this.sprite = Utils.generateAndFilter(sprite,spriteAtLoc);
+    isInAir = false;
+   
   }
   
   public void moveRight(){
-    this.x+=2;
+    if(this.dir == Direction.LEFT){
+      this.dir = Direction.RIGHT;
+    }
+    else if(this.dir == Direction.RIGHT){
+      this.x+=2;
+    }
+    
     
     //System.out.println("Mario X: " + this.x);
   }
   
   public void moveLeft(){
-    this.x-=2;
-    
+    if(this.dir == Direction.RIGHT){
+      this.dir = Direction.LEFT;
+    }
+    else if(this.dir == Direction.LEFT){
+      this.x-=2;
+    }
+  }
+
+  public void jump(){
+    if(!isInAir){
+      this.y -= 46;
+    }
   }
   
-  public void move(char c, int px){
+  public void downForTesting(){
+    this.y += 1;
+  }
+  public void upForTesting(){
+    this.y -= 1;
+  }
+  
+    public void move(char c, int px){
     if(c =='x'){
       this.x += px;
     }
     if(c == 'y'){
       this.y += px;
     }
-  }
-  
-  public void jump(){
-    this.y -= 46;
-  }
-  
-  public void downForTesting(){
-    this.y += 46;
   }
   
   
@@ -92,6 +103,10 @@ public class Mario{
   }
   public void setY(int newY){
     this.y = newY;
+  }
+  
+  public void setDir(Direction newDir){
+    this.dir = newDir;
   }
   
   public void setSprite(String spriteName){

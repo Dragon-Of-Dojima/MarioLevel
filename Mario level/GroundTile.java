@@ -28,32 +28,25 @@ public class GroundTile extends Tile{
     this.whichOne = 1;
     this.sprite = chooseSprite();
     this.x = 0;
-    this.y = 839;
+    this.y = 838;
   }
   
   public BufferedImage chooseSprite(){
-    
+    BufferedImage pulledSprite = null;
     String spritePath = null;
     
     switch(this.whichOne){
-      case 1: spritePath = "sprites/tiles/leftEdgeTileReg.bmp";
+      case 1: spritePath = Constants.LEFTEDGETILEREG;
       break;
-      case 2: spritePath = "sprites/tiles/nonEdgeTileReg.bmp";
+      case 2: spritePath = Constants.NONEDGETILEREG;
       break;
-      case 3: spritePath = "sprites/tiles/rightEdgeTileReg.bmp";
+      case 3: spritePath = Constants.RIGHTEDGETILEREG;
       break;
     }
     
-    URL spriteToPull = getClass().getResource(spritePath);
-    
-     try{
-      sprite = ImageIO.read(spriteToPull);
-
-    } catch(IOException e){
-      System.out.println("sprite not found");
-      e.printStackTrace();
-    }
-    return sprite;
+    URL spriteToPull = Utils.urlGenerator(spritePath);
+    pulledSprite = Utils.generateAndFilter(sprite, spriteToPull);
+    return pulledSprite;
     
   }
   

@@ -33,24 +33,34 @@ public class MarioRender extends JLabel{
   public void paintComponent(Graphics g){
     super.paintComponent(g);
     Graphics2D g2 = (Graphics2D) g;
-    marioSprite.draw(g2);
+    marioSprite.paint(g2);
   }
   
   public void moveMarioRight(){
-    setLocation(this.marioSprite.x + 2, this.marioSprite.getY());
+    marioSprite.moveRight();
+    setLocation(this.marioSprite.getX() + 2, this.marioSprite.getY());
     repaint();
   }
   public void moveMarioLeft(){
-    setLocation(this.marioSprite.x - 2, this.marioSprite.getY());
+    marioSprite.moveLeft();
+    setLocation(this.marioSprite.getX() - 2, this.marioSprite.getY());
     repaint();
   }
   
   
   public void jumpMario(){
     marioSprite.jump();
-    repaint();
+    setLocation(this.marioSprite.getX(), this.marioSprite.getY() - 46);
     
   }
+  
+  public void testDropMario(){
+    marioSprite.downForTesting();
+    //setLocation(this.marioSprite.getX(), this.marioSprite.getY() + 46);
+    repaint();
+  }
+  
+
   
   public void getCoordinates(){
     System.out.println(marioSprite.getCoordinates());
@@ -67,6 +77,7 @@ public class MarioRender extends JLabel{
     f.setSize(868,915);
     MarioRender m = new MarioRender();
     f.add(m);
+    m.marioSprite.setSprite(Constants.SMALLJUMPFACELEFT);
     
     f.setVisible(true);
     f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

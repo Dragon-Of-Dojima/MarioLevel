@@ -38,27 +38,36 @@ public class MarioRender extends JLabel{
   
   public void moveMarioRight(){
     marioSprite.moveRight();
-    setLocation(this.marioSprite.getX() + 2, this.marioSprite.getY());
+    setLocation(this.marioSprite.getX(), this.marioSprite.getY());
     repaint();
   }
+  
   public void moveMarioLeft(){
     marioSprite.moveLeft();
-    setLocation(this.marioSprite.getX() - 2, this.marioSprite.getY());
+    setLocation(this.marioSprite.getX(), this.marioSprite.getY());
     repaint();
   }
   
   
   public void jumpMario(){
     marioSprite.jump();
-    setLocation(this.marioSprite.getX(), this.marioSprite.getY() - 46);
+    setLocation(this.marioSprite.getX(), this.marioSprite.getY());
+    repaint();
     
   }
   
   public void testDropMario(){
     marioSprite.downForTesting();
-    //setLocation(this.marioSprite.getX(), this.marioSprite.getY() + 46);
+    setLocation(this.marioSprite.getX(), this.marioSprite.getY());
     repaint();
   }
+  
+  public void testPushMario(){
+    marioSprite.upForTesting();
+      setLocation(this.marioSprite.getX(), this.marioSprite.getY());
+      repaint();
+    }
+  
   
 
   

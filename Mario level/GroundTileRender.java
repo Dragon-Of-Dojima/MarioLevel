@@ -34,6 +34,10 @@ public class GroundTileRender extends JLabel{
     gTile = new GroundTile();
   }
   
+  public GroundTileRender(int w, int x, int y){
+    gTile = new GroundTile(w,x,y);
+  }
+  
   
   public void paintComponent(Graphics g){
     super.paintComponent(g);

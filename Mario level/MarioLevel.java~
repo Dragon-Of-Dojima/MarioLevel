@@ -24,7 +24,7 @@ public class MarioLevel extends JFrame {
   JLabel bg;
   
   public MarioLevel(){
-   bg = new JLabel();
+    bg = new JLabel();
     this.setSize(868, 915);
     this.setVisible(true);
     this.add(bg, BorderLayout.CENTER);
@@ -36,13 +36,6 @@ public class MarioLevel extends JFrame {
     gT.setBounds(gT.gTile.getX(), gT.gTile.getY(), gT.gTile.sprite.getWidth(),gT.gTile.sprite.getHeight());
     
     this.getContentPane().setBackground(Constants.MAINLEVELCOLOR);
-
-//    gT.setBounds(gT.gTile.getX(), gT.gTile.getY(), gT.gTile.sprite.getWidth(),gT.gTile.sprite.getHeight());
-//    this.add(m);
-//    m.setBounds(m.marioSprite.getX(), m.marioSprite.getY(), m.marioSprite.sprite.getWidth(), m.marioSprite.sprite.getHeight());
-    
-    
-    
     
     KeyListener kl = new MoveListener();
     this.addKeyListener(kl);
@@ -60,38 +53,27 @@ public class MarioLevel extends JFrame {
     public void keyPressed(KeyEvent k){
       
       if((k.getKeyCode() == 39)){
+        m.marioSprite.setSprite(Constants.DEAD);
         m.moveMarioRight();
         System.out.println(m.marioSprite.getCoordinates());
       }
+      
       if((k.getKeyCode() == 37)){
+        m.marioSprite.setSprite(Constants.SMALLSTANDFACELEFT);
         m.moveMarioLeft();
-        System.out.println(m.marioSprite.getCoordinates());
-        
-        URL spriteAtLoc = getClass().getResource("sprites/Mario/SmallStandFaceLeft.bmp");
-
-    try{
-      m.marioSprite.sprite = ImageIO.read(spriteAtLoc);
-
-    } catch(IOException e){
-      System.out.println("sprite not found");
-      e.printStackTrace();
-    }
-        
         System.out.println(m.marioSprite.getCoordinates());
       }
       
       if(k.getKeyCode() == 83){
-        URL spriteAtLoc = getClass().getResource("sprites/Mario/SmallJumpFaceRight.bmp");
-        
-        try{
-          m.marioSprite.sprite = ImageIO.read(spriteAtLoc);
-          
-        } catch(IOException e){
-          System.out.println("sprite not found");
-          e.printStackTrace();
-        }
-        
-        m.jumpMario();
+       m.marioSprite.setSprite(Constants.SMALLJUMPFACERIGHT);
+       m.jumpMario();
+        System.out.println(m.marioSprite.getCoordinates());
+      }
+      
+      if(k.getKeyCode() == 90){
+        m.marioSprite.setSprite(Constants.DEAD);
+        m.testDropMario();
+       
         System.out.println(m.marioSprite.getCoordinates());
       }
       

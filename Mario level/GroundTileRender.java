@@ -29,11 +29,11 @@ public class GroundTileRender extends JLabel{
   
   protected GroundTile gTile;
   
-  
+  //for default
   public GroundTileRender(){
     gTile = new GroundTile();
   }
-  
+  //for non-default
   public GroundTileRender(int w, int x, int y){
     gTile = new GroundTile(w,x,y);
   }

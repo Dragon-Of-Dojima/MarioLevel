@@ -34,6 +34,9 @@ public class MarioRender extends JLabel{
     super.paintComponent(g);
     Graphics2D g2 = (Graphics2D) g;
     marioSprite.paint(g2);
+    //without below, sprite gets cut off!!
+    setBounds(marioSprite.x, marioSprite.y, marioSprite.sprite.getWidth(), marioSprite.sprite.getHeight());
+    
   }
   
   public void moveMarioRight(){
@@ -64,9 +67,9 @@ public class MarioRender extends JLabel{
   
   public void testPushMario(){
     marioSprite.upForTesting();
-      setLocation(this.marioSprite.getX(), this.marioSprite.getY());
-      repaint();
-    }
+    setLocation(this.marioSprite.getX(), this.marioSprite.getY());
+    repaint();
+  }
   
   
 
@@ -86,7 +89,7 @@ public class MarioRender extends JLabel{
     f.setSize(868,915);
     MarioRender m = new MarioRender();
     f.add(m);
-    m.marioSprite.setSprite(Constants.SMALLJUMPFACELEFT);
+    m.marioSprite.setSprite(Constants.SUPERJUMPFACELEFT);
     
     f.setVisible(true);
     f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

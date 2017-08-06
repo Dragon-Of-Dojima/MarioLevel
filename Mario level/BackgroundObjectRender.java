@@ -20,42 +20,25 @@ import javax.swing.JWindow;
 import java.net.URL;
 import java.awt.image.*;
 
-/*
- * (Mario usually starts at 54,806)
- * (frame is now at default: 868,915)
- */
-
-public class GroundTileRender extends JLabel{
+public class BackgroundObjectRender extends JLabel{
+  BackgroundObject bgOb;
   
-  protected GroundTile gTile;
-  
-  
-  public GroundTileRender(){
-    gTile = new GroundTile();
+  //for default
+  public BackgroundObjectRender(){
+    bgOb = new BackgroundObject(); 
   }
-  
   
   public void paintComponent(Graphics g){
     super.paintComponent(g);
     Graphics2D g2 = (Graphics2D) g;
-    gTile.draw(g2);
+    bgOb.paint(g2);
   }
-  
   
   @Override
   public Dimension getPreferredSize() {
-    return new Dimension(gTile.sprite.getWidth(), gTile.sprite.getHeight());
+    return new Dimension(bgOb.sprite.getWidth(), bgOb.sprite.getHeight());
   }
   
-  public static void main(String[] args){
-    JFrame j = new JFrame();
-    j.setSize(868,915);
-    GroundTileRender gt = new GroundTileRender();
-    j.add(gt);
-    j.setVisible(true);
-    j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
- 
-    
-  }
+  
   
 }

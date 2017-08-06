@@ -25,7 +25,7 @@ public class Mario{
   public Mario(){
     this.state = MarioState.SMALL;
     this.x = 54;
-    this.y = 810;
+    this.y = 808;
     dir = Direction.RIGHT;
     setSprite(Constants.SMALLSTANDFACERIGHT);
     isInAir = false;
@@ -70,10 +70,10 @@ public class Mario{
   }
   
   public void downForTesting(){
-    this.y += 1;
+    this.y += 2;
   }
   public void upForTesting(){
-    this.y -= 1;
+    this.y -= 2;
   }
   
     public void move(char c, int px){
